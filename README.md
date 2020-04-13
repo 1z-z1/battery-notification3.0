@@ -15,7 +15,7 @@ From [version 2.0](https://github.com/enigmatic-system/battery-notification2.0) 
       
   - Low level notification at 20%
   
-      ![lowAlert](https://i.imgur.com/7ZP2JEe.png)
+      ![lowAlert](https://i.imgur.com/ed7e9cr.png)
   
   - Battery fully charged notification at 100%
   
