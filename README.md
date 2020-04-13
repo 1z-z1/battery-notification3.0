@@ -3,7 +3,7 @@
 
 This is a script to notify you that your laptop needs to be plugged in.
 
-From [version 2.0](https://github.com/enigmatic-system/battery-notification2.0) I've added a "Battery charged" notification.
+From [version 2.0](https://github.com/enigmatic-system/battery-notification2.0) I've added a "Battery fully charged" notification.
 
   - Critical level notification at 10%
   
