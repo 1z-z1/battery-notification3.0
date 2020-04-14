@@ -1,5 +1,5 @@
 # battery-notification3.0
- A simple and complete battery notification script 
+ A battery notification script 
 
 This is a script to notify you that your laptop needs to be plugged in.
 
