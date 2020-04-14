@@ -36,9 +36,9 @@ LowAlert=95
 	elif [[ "$BatteryStatus" == "$BatteryCharging" ]] && [[ $BatteryCapacity -le 80 ]]; then
 		  ((i=0))
 		  sleep 2
-  else
+	else
 		  ((i=1)) 
 		  sleep 2	
-    fi
+	fi
 done
 
