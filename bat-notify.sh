@@ -7,8 +7,8 @@ i=0
 while true
 do
 
-BatteryCapacity=`cat /sys/class/power_supply/BAT0/capacity`
-BatteryStatus=`cat /sys/class/power_supply/BAT0/status`
+BatteryCapacity=$(cat /sys/class/power_supply/BAT0/capacity)
+BatteryStatus=$(cat /sys/class/power_supply/BAT0/status)
 BatteryDischarging="Discharging"
 BatteryCharging="Charging"
 BatteryFull="Full"
@@ -37,8 +37,8 @@ LowAlert=95
 		  ((i=0))
 		  sleep 2
 	else
-		  ((i=1)) 
-		  sleep 2	
+		  ((i=1))
+		  sleep 2
 	fi
 done
 
