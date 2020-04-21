@@ -3,11 +3,6 @@
 # Version 3.0
 
 i=0
-
-while true; do
-
-BatteryCapacity=$(cat /sys/class/power_supply/BAT0/capacity)
-BatteryStatus=$(cat /sys/class/power_supply/BAT0/status)
 BatteryDischarging="Discharging"
 BatteryCharging="Charging"
 BatteryFull="Full"
@@ -43,9 +38,15 @@ function Charging () {
   sleep 2
 }
 
-case "${BatteryStatus}" in
-   "${BatteryDischarging}") Discharging;;
-          "${BatteryFull}") Full;;
-      "${BatteryCharging}") Charging;;
-                         *) i=1; sleep 2;;
-esac
+while true; do
+
+read -r BatteryCapacity < /sys/class/power_supply/BAT0/capacity
+read -r BatteryStatus   < /sys/class/power_supply/BAT0/status
+
+  case "${BatteryStatus}" in
+    "${BatteryDischarging}") Discharging;;
+           "${BatteryFull}") Full;;
+       "${BatteryCharging}") Charging;;
+                          *) i=1; sleep 2;;
+  esac
+done
