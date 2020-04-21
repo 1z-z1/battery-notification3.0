@@ -16,29 +16,36 @@ CriticalAlert=10
 NormalAlert=15
 LowAlert=95
 
-	if [[ "$BatteryStatus" == "$BatteryDischarging" ]] && [ $BatteryCapacity -le $CriticalAlert ]; then
-		  ((i=0))
-		  notify-send -u critical "Alert" "Battery Low!!!"
-		  sleep 30
-	elif [[ "$BatteryStatus" == "$BatteryDischarging" ]] && [ $BatteryCapacity -le $NormalAlert ]; then
-		  ((i=0))
-		  nofify-send -u normal "Alert" "Battery getting low..."
-		  sleep 60
-	elif [[ "$BatteryStatus" == "$BatteryDischarging" ]] && [ $BatteryCapacity -le $LowAlert ]; then
-		  ((i=0))
-		  notify-send -u low "Alert" "Think about plugging in computer if possible..."
-		  sleep 300
-	elif [[ "$BatteryStatus" == "$BatteryFull" ]] && [ $i = 0 ]; then
-		  notify-send -u normal "Alert" "Battery fully charged."
-		  ((i++))
-	elif [[ "$BatteryStatus" == "$BatteryCharging" ]] && [ $i = 0 ]; then
-		  sleep 2
-	elif [[ "$BatteryStatus" == "$BatteryCharging" ]] && [[ $BatteryCapacity -le 80 ]]; then
-		  ((i=0))
-		  sleep 2
-	else
-		  ((i=1))
-		  sleep 2
-	fi
+  if [[ "$BatteryStatus" == "$BatteryDischarging" ]]; then
+    if [[ $BatteryCapacity -le $CriticalAlert ]]; then
+      ((i=0))
+      notify-send -u critical "Alert" "Battery Low!!!"
+      sleep 30
+    elif [[ $BatteryCapacity -le $NormalAlert ]]; then
+      ((i=0))
+      nofify-send -u normal "Alert" "Battery getting low..."
+      sleep 60
+    elif [[ $BatteryCapacity -le $LowAlert ]]; then
+      ((i=0))
+      notify-send -u low "Alert" "Think about plugging in computer if possible..."
+      sleep 300
+    fi
+  elif [[ "$BatteryStatus" == "$BatteryFull" ]]; then
+    if [[ "${i}" -eq 0 ]]; then
+      notify-send -u normal "Alert" "Battery fully charged."
+      ((i++))
+    fi
+  elif [[ "$BatteryStatus" == "$BatteryCharging" ]]; then
+    if [[ "${i}" -eq 0 ]]; then
+      sleep 2
+    fi
+  elif [[ "$BatteryStatus" == "$BatteryCharging" ]]; then
+    if [[ $BatteryCapacity -le 80 ]]; then
+      ((i=0))
+    sleep 2
+    fi
+  else
+    ((i=1))
+    sleep 2
+  fi
 done
-
